@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">NanitBirthday</string>
+    <string name="app_title">Happy Birthday!</string>
+    <string name="name">Name</string>
+    <string name="birthday">Birthday</string>
+    <string name="title_birthday">Select date of birth</string>
+    <string name="show_birthday_screen">Show birthday screen</string>
+</resources>
