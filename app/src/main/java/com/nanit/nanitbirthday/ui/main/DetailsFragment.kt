@@ -8,7 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.nanit.nanitbirthday.R
 import com.nanit.nanitbirthday.databinding.DetailsFragmentBinding
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DetailsFragment : Fragment() {
 
@@ -49,6 +53,8 @@ class DetailsFragment : Fragment() {
         binding.viewmodel = viewModel
 
         initValidation()
+
+        prepareBirthdayLayer()
     }
 
     override fun onDestroyView() {
@@ -59,5 +65,20 @@ class DetailsFragment : Fragment() {
     private fun initValidation() {
         binding.etName.addTextChangedListener(watcher)
         binding.etBirthday.addTextChangedListener(watcher)
+    }
+
+    private fun prepareBirthdayLayer() {
+        val picker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(R.string.title_birthday)
+            .build()
+        binding.etBirthday.setOnClickListener {
+            activity?.supportFragmentManager?.let { manager ->
+                picker.addOnPositiveButtonClickListener {
+                    val date = SimpleDateFormat(DATE_FORMAT, Locale.US).format(it)
+                    viewModel.setDate(date)
+                }
+                picker.show(manager, picker.toString())
+            }
+        }
     }
 }
