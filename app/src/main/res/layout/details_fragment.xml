@@ -7,14 +7,17 @@
 
         <variable
             name="viewmodel"
-            type="com.nanit.nanitbirthday.ui.main.DetailsViewModel" />
+            type="com.nanit.nanitbirthday.ui.model.ViewModel" />
+
+        <variable
+            name="detailsFragment"
+            type="com.nanit.nanitbirthday.ui.DetailsFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.DetailsFragment">
+        tools:context=".ui.DetailsFragment">
 
         <Toolbar
             android:id="@+id/toolbar"
@@ -62,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:focusable="false"
                 android:inputType="date"
-                android:text="@{viewmodel.date}" />
+                android:text="@{viewmodel.birthday}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
@@ -87,6 +90,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:enabled="false"
+            android:onClick="@{() -> detailsFragment.goToBirthdayScreen()}"
             android:text="@string/show_birthday_screen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

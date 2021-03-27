@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.nanit.nanitbirthday.ui.model.ViewModel" />
+
+        <variable
+            name="birthdayFragment"
+            type="com.nanit.nanitbirthday.ui.BirthdayFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:resId="@{viewmodel.background}"
+        tools:background="@drawable/android_pelican_popup"
+        tools:context=".ui.BirthdayFragment">
+
+        <ImageButton
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> birthdayFragment.goToDetailsScreen()}"
+            android:padding="8dp"
+            android:src="@drawable/ic_btn_close_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center_horizontal|bottom"
+            android:lines="2"
+            android:text="@{String.format(@string/today_is, viewmodel.name)}"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="@+id/ivRight"
+            app:layout_constraintStart_toStartOf="@+id/ivLeft"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="today name is" />
+
+        <ImageView
+            android:id="@+id/ivAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            app:resId="@{viewmodel.age}"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_1" />
+
+        <ImageView
+            android:id="@+id/ivLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_swirls_left"
+            app:layout_constraintBottom_toBottomOf="@+id/ivAge"
+            app:layout_constraintEnd_toStartOf="@+id/ivAge"
+            app:layout_constraintTop_toTopOf="@+id/ivAge"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/ivRight"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_swirls_right"
+            app:layout_constraintBottom_toBottomOf="@+id/ivAge"
+            app:layout_constraintStart_toEndOf="@+id/ivAge"
+            app:layout_constraintTop_toTopOf="@+id/ivAge"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvOld"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal|bottom"
+            android:text="@{viewmodel.isYearsAge() ? @string/years_old : @string/months_old}"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivAge"
+            tools:text="@string/months_old" />
+
+        <ImageView
+            android:id="@+id/ivPicture"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            app:imageUrl="@{viewmodel.url}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

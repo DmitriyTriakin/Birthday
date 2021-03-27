@@ -1,4 +1,4 @@
-package com.nanit.nanitbirthday.ui.main
+package com.nanit.nanitbirthday.ui
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,27 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.nanit.nanitbirthday.R
 import com.nanit.nanitbirthday.databinding.DetailsFragmentBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.nanit.nanitbirthday.ui.model.ViewModel
 
 class DetailsFragment : Fragment() {
 
-    companion object {
-
-        private const val DATE_FORMAT = "MM.dd.yyyy"
-
-        fun newInstance() = DetailsFragment()
-    }
-
     private var _binding: DetailsFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by lazy {
-        ViewModelProvider(this).get(DetailsViewModel::class.java)
-    }
+    private val viewModel: ViewModel by activityViewModels()
     private val watcher = object : TextWatcher {
 
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -48,6 +39,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.detailsFragment = this
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewmodel = viewModel
@@ -62,20 +54,26 @@ class DetailsFragment : Fragment() {
         _binding = null
     }
 
+    fun goToBirthdayScreen() {
+        viewModel.setName(binding.etName.text.toString())
+        findNavController().navigate(R.id.action_detailsFragment_to_birthdayFragment)
+    }
+
     private fun initValidation() {
         binding.etName.addTextChangedListener(watcher)
         binding.etBirthday.addTextChangedListener(watcher)
     }
 
     private fun prepareBirthdayLayer() {
-        val picker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText(R.string.title_birthday)
-            .build()
+        val builder = MaterialDatePicker.Builder.datePicker().setTitleText(R.string.title_birthday)
+        if (viewModel.birthdayInMillis > 0) {
+            builder.setSelection(viewModel.birthdayInMillis)
+        }
+        val picker = builder.build()
         binding.etBirthday.setOnClickListener {
             activity?.supportFragmentManager?.let { manager ->
                 picker.addOnPositiveButtonClickListener {
-                    val date = SimpleDateFormat(DATE_FORMAT, Locale.US).format(it)
-                    viewModel.setDate(date)
+                    viewModel.setBirthday(it)
                 }
                 picker.show(manager, picker.toString())
             }
