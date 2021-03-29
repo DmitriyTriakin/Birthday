@@ -16,6 +16,8 @@ class ViewModel : ViewModel() {
         private const val DATE_FORMAT = "MM.dd.yyyy"
         private const val IMG_URL_FIRST =
             "https://as2.ftcdn.net/jpg/02/16/85/19/500_F_216851969_42JnrCBh9acjRk3hkFRzfKLqoA3CpDmk.jpg"
+        private const val IMG_URL_SECOND =
+            "https://as2.ftcdn.net/jpg/02/50/10/03/1000_F_250100321_1hYz6jdwgiKmXz3mC4q0BCnR83jSTSbL.jpg"
     }
 
     private val _name = MutableLiveData("Clark Kent")
@@ -57,6 +59,10 @@ class ViewModel : ViewModel() {
     fun setBirthday(timeInMillis: Long) {
         birthdayInMillis = timeInMillis
         _birthday.value = SimpleDateFormat(DATE_FORMAT, Locale.US).format(timeInMillis)
+    }
+
+    fun setImgUrl() {
+        _url.value = IMG_URL_SECOND
     }
 
     fun setupBirthdayScreen(r: Resources) {
