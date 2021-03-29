@@ -17,9 +17,26 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:resId="@{viewmodel.background}"
-        tools:background="@drawable/android_pelican_popup"
         tools:context=".ui.BirthdayFragment">
+
+        <ImageView
+            android:id="@+id/ivPicture"
+            android:layout_width="225dp"
+            android:layout_height="225dp"
+            app:imageUrl="@{viewmodel.url}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.78"
+            tools:ignore="ContentDescription"
+            tools:src="@tools:sample/avatars" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:resId="@{viewmodel.background}"
+            tools:background="@drawable/android_pelican_popup" />
 
         <ImageButton
             android:id="@+id/ivClose"
@@ -113,17 +130,5 @@
             app:resId="@{viewmodel.icCamera}"
             tools:ignore="ContentDescription"
             tools:src="@drawable/ic_camera_blue" />
-
-        <ImageView
-            android:id="@+id/ivPicture"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
-            app:imageUrl="@{viewmodel.url}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75"
-            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

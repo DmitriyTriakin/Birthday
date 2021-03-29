@@ -4,16 +4,18 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.nanit.nanitbirthday.R
 
 object BindingAdapter {
 
     @JvmStatic
-    @BindingAdapter("imageUrl")
-    fun loadImage(view: ImageView, url: String?) {
+    @BindingAdapter(value = ["imageUrl", "placeholder"], requireAll = false)
+    fun loadImage(view: ImageView, url: String?, resId: Int?) {
         url?.let {
             Glide.with(view.context)
                 .load(url)
                 .circleCrop()
+                .placeholder(resId ?: R.drawable.ic_def_place_holder_blue)
                 .into(view)
         }
     }
