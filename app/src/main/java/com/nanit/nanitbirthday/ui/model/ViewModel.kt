@@ -20,7 +20,7 @@ class ViewModel : ViewModel() {
             "https://as2.ftcdn.net/jpg/02/50/10/03/1000_F_250100321_1hYz6jdwgiKmXz3mC4q0BCnR83jSTSbL.jpg"
     }
 
-    private val _name = MutableLiveData("Clark Kent")
+    private val _name = MutableLiveData("")
     private val _birthday = MutableLiveData("")
     private val _url = MutableLiveData(IMG_URL_FIRST)
     private val _background
