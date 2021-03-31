@@ -31,6 +31,14 @@ class ViewModel : ViewModel() {
                 else -> R.drawable.android_pelican_popup
             }
         )
+    private val _backgroundColor
+    get() = MutableLiveData(
+        when (random) {
+            0 -> R.color.yellow
+            1 -> R.color.green
+            else -> R.color.blue
+        }
+    )
     private val _icCamera
         get() = MutableLiveData(
             when (random) {
@@ -48,6 +56,7 @@ class ViewModel : ViewModel() {
     val birthday: LiveData<String> = _birthday
     val url: LiveData<String> = _url
     val background: LiveData<Int> get() = _background
+    val backgroundColor: LiveData<Int> get() = _backgroundColor
     val icCamera: LiveData<Int> get() = _icCamera
     val isYearsAge: LiveData<Boolean> = _isYearsAge
     val age: LiveData<Int> = _age

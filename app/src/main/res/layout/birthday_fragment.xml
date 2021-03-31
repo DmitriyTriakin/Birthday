@@ -17,26 +17,28 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:resId="@{viewmodel.backgroundColor}"
         tools:context=".ui.BirthdayFragment">
 
         <ImageView
             android:id="@+id/ivPicture"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_marginBottom="88dp"
             app:imageUrl="@{viewmodel.url}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.78"
             tools:ignore="ContentDescription"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@drawable/ic_def_place_holder_blue" />
 
-        <View
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="fitEnd"
             app:resId="@{viewmodel.background}"
-            tools:background="@drawable/android_pelican_popup" />
+            tools:background="@drawable/android_pelican_popup"
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/ivClose"
@@ -119,14 +121,12 @@
             android:id="@+id/ivCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:onClick="@{() -> viewmodel.setImgUrl()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.55"
+            app:layout_constraintEnd_toEndOf="@+id/ivPicture"
+            app:layout_constraintTop_toTopOf="@+id/ivPicture"
             app:resId="@{viewmodel.icCamera}"
             tools:ignore="ContentDescription"
             tools:src="@drawable/ic_camera_blue" />
