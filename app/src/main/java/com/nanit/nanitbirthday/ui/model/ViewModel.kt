@@ -101,6 +101,6 @@ class ViewModel : ViewModel() {
                 age--
             }
         }
-        return if (age < 0) age * -1 else age
+        return if (age < 0) age + 12 else age
     }
 }
